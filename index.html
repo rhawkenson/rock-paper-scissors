@@ -7,8 +7,9 @@
 </head>
 <body>
     <script>
-        
-        const computerSelection = computerPlay();
+
+        let playerSelection = window.prompt('Rock, paper, or scissors?');
+        let computerSelection = computerPlay();
         
         function computerPlay(){
             let choice = Math.floor(Math.random()*3)+1;
@@ -20,29 +21,59 @@
                 return 'scissors';
             }
         }
+        
+        let computerScore = 0;
+        let playerScore = 0;
+        //let score = `Your score is ${playerScore}. The computer's score is ${computerScore}`
+
 
         function gameRound(playerSelection, computerSelection){
             let playerChoice = playerSelection.toLowerCase();
+
             if (playerChoice === computerSelection){
                 return `This round is a tie. You both chose ${playerChoice}`;
             } else if ((playerChoice === 'paper') && (computerSelection === 'scissors')){
-                return `You chose ${playerSelection}. Computer chose ${computerSelection}. Computer wins this round.`;
+                return `You chose ${playerChoice}. Computer chose ${computerSelection}. Computer wins this round.`
+                computerScore+=1;
             } else if ((playerChoice === 'paper') && (computerSelection === 'rock')){
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. You win this round.`;
+                return `You chose ${playerChoice}. Computer chose ${computerSelection}. You win this round.`
+                playerScore+=1;
             } else if ((playerChoice === 'rock') && (computerSelection === 'paper')){
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. Computer wins this round.`;
+                return `You chose ${playerChoice}. Computer chose ${computerSelection}. Computer wins this round.`
+                computerScore+=1;
             } else if ((playerChoice === 'rock') && (computerSelection === 'scissors')){
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. You win this round.`;
+                return `You chose ${playerChoice}. Computer chose ${computerSelection}. You win this round.`
+                playerScore+=1;
             } else if ((playerChoice === 'scissors') && (computerSelection === 'paper')){
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. You win this round.`;
+                return `You chose ${playerChoice}. Computer chose ${computerSelection}. You win this round.`
+                playerScore+=1;
             } else if ((playerChoice === 'scissors') && (computerSelection === 'rock')){
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. Computer wins this round.`;
+                return `You chose ${playerChoice}. Computer chose ${computerSelection}. Computer wins this round.`
+                computerScore+=1;
             } else {
                 return 'ERROR! TRY AGAIN';
+            } 
+        }
+
+        console.log(gameRound(playerSelection, computerSelection));
+        let score = `Your score is ${playerScore}. The computer's score is ${computerScore}`
+        console.log(score)
+
+        function game(){
+            
+        }
+
+        /*function getScore(computerScore, playerScore){
+            if (computerScore > playerScore){
+                return 'Computer wins this game. Better luck next time!';
+            } else if (computerScore < playerScore){
+                return 'Congratulations! You beat the computer and won the game!';
+            } else {
+                return 'There has been an error';
             }
         }
         
-        console.log(gameRound('PAPER', computerSelection));
+        console.log(getScore(computerScore, playerScore));   */
 
 
     </script>
