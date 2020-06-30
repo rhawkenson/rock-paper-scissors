@@ -71,18 +71,24 @@
         }
 
         
-        console.log(gameRound(playerSelection, computerSelection));
-    
+        //console.log(gameRound(playerSelection, computerSelection));
+        let score = `The score is ${playerScore} (you) to ${computerScore} (computer).`
 
         function game(){
             console.log(gameRound(playerSelection, computerSelection));
+            console.log(score);
+            break;
             console.log(gameRound(playerSelection, computerSelection));
+            console.log(score);
             console.log(gameRound(playerSelection, computerSelection));
+            console.log(score);
             console.log(gameRound(playerSelection, computerSelection));
+            console.log(score);
             console.log(gameRound(playerSelection, computerSelection));
+            console.log(score);
         }
 
-        //console.log(game());
+        console.log(game());
 
     </script>
 </body>
