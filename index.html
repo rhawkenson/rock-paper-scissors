@@ -3,16 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css">
     <title>Rock, Paper, Scissors</title>
 </head>
 <body>
+    <h1>Rock, Paper, Scissors</h1>
+    <div id="moves">
+        <div class="move">
+            <h2>Make a move:</h2>
+                <button>Rock</button>
+                <button>Paper</button>
+                <button>Scissors</button>
+        </div>
+        <div class="move">
+            <h2>Computer chose: </h2>
+        </div>
+
+    </div>
+    <div id="score-box">
+        <h2>Current Score:</h2>
+        <div>
+            <p>Computer</p>
+            <p>Player</p>
+        </div>
+    </div>
+    
+    
+
+    
+
+
+
+
     <script>
-    //Gets the player's selected from the prompts
-        let playerSelection = window.prompt('Rock, paper, or scissors?');
-        let computerSelection = computerPlay();
+    //Gets the player's choice
+        //let playerSelection = window.prompt('Rock, paper, or scissors?');
         
 
     //Generates random computer choice    
+        let computerSelection = computerPlay();
         function computerPlay(){
             let choice = Math.floor(Math.random()*3)+1;
             if (choice === 1){
@@ -23,11 +52,9 @@
                 return 'scissors';
             }
         }
-        
-    //Set constants for score 
-            let playerScore = 0;
-            let computerScore = 0;
-            //const rounds = 1;
+
+        let playerPoint = 0;
+        let computerPoint = 0;
 
     //Determines winner of the round 
         function gameRound(playerSelection, computerSelection){
@@ -39,30 +66,30 @@
 
         //If player chooses paper 
             } else if ((playerChoice === 'paper') && (computerSelection === 'scissors')){
-                computerScore++;
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. Computer wins this round. Your score is ${playerScore}, computer's score is ${computerScore}`
-                
+                computerPoint+=1;
+                return `You chose ${playerChoice}. Computer chose ${computerSelection}. Computer wins this round.` 
+
             } else if ((playerChoice === 'paper') && (computerSelection === 'rock')){
-                playerScore++;
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. You win this round. Your score is ${playerScore}, computer's score is ${computerScore}`
+                playerPoint+=1;
+                return `You chose ${playerChoice}. Computer chose ${computerSelection}. You win this round.`
             
         //If player chooses rock
             } else if ((playerChoice === 'rock') && (computerSelection === 'paper')){
-                computerScore++;
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. Computer wins this round. Your score is ${playerScore}, computer's score is ${computerScore}`
+                computerPoint+=1;
+                return `You chose ${playerChoice}. Computer chose ${computerSelection}. Computer wins this round.`
                 
             } else if ((playerChoice === 'rock') && (computerSelection === 'scissors')){
-                playerScore++;
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. You win this round. Your score is ${playerScore}, computer's score is ${computerScore}`
+                playerPoint+=1;
+                return `You chose ${playerChoice}. Computer chose ${computerSelection}. You win this round.`
                 
         //If player chooses scissors
             } else if ((playerChoice === 'scissors') && (computerSelection === 'paper')){
-                playerScore++;
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. You win this round. Your score is ${playerScore}, computer's score is ${computerScore}`
+                playerPoint+=1;
+                return `You chose ${playerChoice}. Computer chose ${computerSelection}. You win this round.`
                 
             } else if ((playerChoice === 'scissors') && (computerSelection === 'rock')){
-                computerScore++;
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. Computer wins this round. Your score is ${playerScore}, computer's score is ${computerScore}`
+                computerPoint+=1;
+                return `You chose ${playerChoice}. Computer chose ${computerSelection}. Computer wins this round.`
                 
         //Error statement
             } else {
@@ -71,24 +98,45 @@
         }
 
         
-        //console.log(gameRound(playerSelection, computerSelection));
-        let score = `The score is ${playerScore} (you) to ${computerScore} (computer).`
 
-        function game(){
-            console.log(gameRound(playerSelection, computerSelection));
-            console.log(score);
-            break;
-            console.log(gameRound(playerSelection, computerSelection));
-            console.log(score);
-            console.log(gameRound(playerSelection, computerSelection));
-            console.log(score);
-            console.log(gameRound(playerSelection, computerSelection));
-            console.log(score);
-            console.log(gameRound(playerSelection, computerSelection));
-            console.log(score);
-        }
+        function game() {
+            let rounds = 1;
 
+            do {
+                let playerSelection = prompt("Enter 'Rock', 'Paper', or 'Scissors'");
+                let computerSelection = computerPlay();
+
+                console.log(`Round: ${rounds}`);
+                console.log(`Player Pick: ${playerSelection}`);
+                console.log(`Computer Pick: ${computerSelection}`);
+                
+
+
+                gameRound(playerSelection, computerSelection);
+                rounds++;
+                console.log(`Rolling score: Player ${playerPoint} v ${computerPoint} Computer`)
+                console.log('')
+
+            } while (rounds < 6 && computerPoint !== 3 && playerPoint !== 3);
+
+                if (playerPoint === computerPoint) {
+                    console.log(`TIE! A close game after ${rounds - 1} rounds!`);
+                
+                } else if (playerPoint > computerPoint) {
+                    console.log(`PLAYER WINS after ${rounds - 1} rounds. 
+                    Final score: PLAYER ${playerPoint} v ${computerPoint} COMPUTER`);
+                
+                } else if (computerPoint > playerPoint) {
+                    console.log(`COMPUTER WINS after ${rounds - 1} rounds. 
+                    Final score: Player ${playerPoint} v ${computerPoint} Computer`);
+                }
+            }
+    
         console.log(game());
+
+
+        //DOM Manipulation for gameplay 
+       document.querySelectorAll('button');
 
     </script>
 </body>
