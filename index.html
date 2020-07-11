@@ -11,9 +11,9 @@
     <div id="moves">
         <div class="move">
             <h2>Make a move:</h2>
-                <button>Rock</button>
-                <button>Paper</button>
-                <button>Scissors</button>
+                <button id='rock' class='move-button'>Rock</button>
+                <button id='paper' class='move-button'>Paper</button>
+                <button id='scissors' class='move-button'>Scissors</button>
         </div>
         <div class="move">
             <h2>Computer chose: </h2>
@@ -21,123 +21,16 @@
 
     </div>
     <div id="score-box">
-        <h2>Current Score:</h2>
+        <h2 id=>Current Score:</h2>
         <div>
-            <p>Computer</p>
-            <p>Player</p>
+            <p id='computer-score'>Computer</p>
+            <p id='player-score'>Player</p>
         </div>
     </div>
-    
-    
+    <div id="reset" class="reset-row">
+        Reset
+      </div>
 
-    
-
-
-
-
-    <script>
-    //Gets the player's choice
-        //let playerSelection = window.prompt('Rock, paper, or scissors?');
-        
-
-    //Generates random computer choice    
-        let computerSelection = computerPlay();
-        function computerPlay(){
-            let choice = Math.floor(Math.random()*3)+1;
-            if (choice === 1){
-                return 'paper';
-            } else if (choice === 2){
-                return 'rock';
-            } else {
-                return 'scissors';
-            }
-        }
-
-        let playerPoint = 0;
-        let computerPoint = 0;
-
-    //Determines winner of the round 
-        function gameRound(playerSelection, computerSelection){
-            let playerChoice = playerSelection.toLowerCase();
-            
-        //Tie Game
-            if (playerChoice === computerSelection){
-                return `This round is a tie. You both chose ${playerChoice}`;
-
-        //If player chooses paper 
-            } else if ((playerChoice === 'paper') && (computerSelection === 'scissors')){
-                computerPoint+=1;
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. Computer wins this round.` 
-
-            } else if ((playerChoice === 'paper') && (computerSelection === 'rock')){
-                playerPoint+=1;
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. You win this round.`
-            
-        //If player chooses rock
-            } else if ((playerChoice === 'rock') && (computerSelection === 'paper')){
-                computerPoint+=1;
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. Computer wins this round.`
-                
-            } else if ((playerChoice === 'rock') && (computerSelection === 'scissors')){
-                playerPoint+=1;
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. You win this round.`
-                
-        //If player chooses scissors
-            } else if ((playerChoice === 'scissors') && (computerSelection === 'paper')){
-                playerPoint+=1;
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. You win this round.`
-                
-            } else if ((playerChoice === 'scissors') && (computerSelection === 'rock')){
-                computerPoint+=1;
-                return `You chose ${playerChoice}. Computer chose ${computerSelection}. Computer wins this round.`
-                
-        //Error statement
-            } else {
-                return 'ERROR! TRY AGAIN';
-            } 
-        }
-
-        
-
-        function game() {
-            let rounds = 1;
-
-            do {
-                let playerSelection = prompt("Enter 'Rock', 'Paper', or 'Scissors'");
-                let computerSelection = computerPlay();
-
-                console.log(`Round: ${rounds}`);
-                console.log(`Player Pick: ${playerSelection}`);
-                console.log(`Computer Pick: ${computerSelection}`);
-                
-
-
-                gameRound(playerSelection, computerSelection);
-                rounds++;
-                console.log(`Rolling score: Player ${playerPoint} v ${computerPoint} Computer`)
-                console.log('')
-
-            } while (rounds < 6 && computerPoint !== 3 && playerPoint !== 3);
-
-                if (playerPoint === computerPoint) {
-                    console.log(`TIE! A close game after ${rounds - 1} rounds!`);
-                
-                } else if (playerPoint > computerPoint) {
-                    console.log(`PLAYER WINS after ${rounds - 1} rounds. 
-                    Final score: PLAYER ${playerPoint} v ${computerPoint} COMPUTER`);
-                
-                } else if (computerPoint > playerPoint) {
-                    console.log(`COMPUTER WINS after ${rounds - 1} rounds. 
-                    Final score: Player ${playerPoint} v ${computerPoint} Computer`);
-                }
-            }
-    
-        console.log(game());
-
-
-        //DOM Manipulation for gameplay 
-       document.querySelectorAll('button');
-
-    </script>
+    <script src='script.js'></script>
 </body>
 </html>
