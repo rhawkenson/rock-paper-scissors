@@ -1,25 +1,29 @@
-let buttons = document.getElementsByClassName('.move-button');
-let rock = document.getElementById('#rock');
-let paper = document.getElementById('#paper');
-let scissors = document.getElementById('#scissors');
-const computerScore = document.getElementById('#computer-score');
-const playerScore = document.getElementById('#player-score');
+let buttons = document.querySelectorAll('.move-button');
+let rock = document.getElementById('rock');
+let paper = document.getElementById('paper');
+let scissors = document.getElementById('scissors');
+const computerScore = document.getElementById('computer-score');
+const playerScore = document.getElementById('player-score');
 
 
  //Gets the player's choice
-
-
-let playerPlay = () => {
-    buttons.onclick = () =>{
-        if(buttons === rock){
-            return 'rock';
-        } else {
-            return scissors;
-
-        }
-    }
+rock.onclick = () => {
+    playerSelection = 'rock';
+    computerPlay();
+    gameRound(playerSelection, computerSelection); 
 }
-let playerSelection = playerPlay();
+
+paper.onclick = () => {
+    playerSelection = 'paper';
+    computerPlay();
+    gameRound(playerSelection, computerSelection); 
+}
+
+scissors.onclick = () => {
+    playerSelection = 'scissors';
+    computerPlay();
+    gameRound(playerSelection, computerSelection); 
+}
 
  //Generates random computer choice    
     const computerSelection = computerPlay();
@@ -61,9 +65,6 @@ let playerSelection = playerPlay();
         let rounds = 1;
 
         do {
-            let playerSelection = playerPlay();
-            let computerSelection = computerPlay();
-
             console.log(`Round: ${rounds}`);
             console.log(`Player Pick: ${playerSelection}`);
             console.log(`Computer Pick: ${computerSelection}`);
@@ -87,6 +88,6 @@ let playerSelection = playerPlay();
                 console.log(`COMPUTER WINS after ${rounds - 1} rounds. 
                 Final score: Player ${playerPoint} v ${computerPoint} Computer`);
             }
-        }
+        };
 
-    console.log(game()); 
+    console.log(game());
