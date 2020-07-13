@@ -7,32 +7,47 @@ const computerScore = document.getElementById('computer-score');
 const playerScore = document.getElementById('player-score');
 const message = document.getElementById('message');
 const move = document.getElementById('move');
-const reset = getElementById('reset');
+const reset = document.getElementById('reset');
+let clickable = true;
 
 //Get player move from button clicks
 rock.onclick = () => {
+    if (clickable){
+    clickable = false;
     playerMove = 'rock';
     computerPlay();
     gameRound(playerMove, computerMove);
+    
+    }
 }
 
 paper.onclick = () => {
+    if (clickable){
+    clickable = false;
     playerMove = 'paper';
     computerPlay();
     gameRound(playerMove, computerMove);
+    }
 }
 
 scissors.onclick = () => {
+    if (clickable){
+        clickable = false;
     playerMove = 'scissors';
     computerPlay();
-    gameRound(playerMove, computerMove);
+    gameRound(playerMove, computerMove); 
+    }
 }
 
 reset.onclick = () => {
-    message.innerHTML = 'steven sucks';
-    message.style.color = '#C9F8F6';
-    message.style.fontSize = '25px';
-    
+    message.innerHTML = '';
+    clickable = true;
+    startOver();
+}
+
+const startOver = () =>{
+    clickable = true;
+    computerPlay();
 }
 
 //Get computer move by random chance
@@ -46,6 +61,7 @@ function computerPlay(){
         return 'scissors';
     }
 };
+
 
 
 //play the game 
@@ -67,23 +83,23 @@ function gameRound(playerMove, computerMove){
         message.innerHTML = `Rock loses to paper - computer wins!`;
         computerPoint++;
         rounds++;
-    }else if (playerMove === 'paper' && computerMove === 'scissors'){
+    } else if (playerMove === 'paper' && computerMove === 'scissors'){
         message.innerHTML = `Paper loses to scissors - computer wins!`;
         computerPoint++;
         rounds++;
-    }else if (playerMove === 'paper' && computerMove === 'rock'){
+    } else if (playerMove === 'paper' && computerMove === 'rock'){
         message.innerHTML = `Paper beats rock - you win!`;
         playerPoint++;
         rounds++;
-    }else if (playerMove === 'scissors' && computerMove === 'paper'){
+    } else if (playerMove === 'scissors' && computerMove === 'paper'){
         message.innerHTML = `Scissors beats paper - you win!`;
         playerPoint++;
         rounds++;
-    }else if (playerMove === 'scissors' && computerMove === 'rock'){
+    } else if (playerMove === 'scissors' && computerMove === 'rock'){
         message.innerHTML = `Scissors loses to rock - computer wins!`;
         computerPoint++;
         rounds++;
-    }else {
+    } else {
         message.innerHTML = 'take a break';
     }
 };
