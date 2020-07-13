@@ -13,41 +13,32 @@ let clickable = true;
 //Get player move from button clicks
 rock.onclick = () => {
     if (clickable){
-    clickable = false;
     playerMove = 'rock';
-    computerPlay();
     gameRound(playerMove, computerMove);
-    
     }
 }
 
 paper.onclick = () => {
     if (clickable){
-    clickable = false;
     playerMove = 'paper';
-    computerPlay();
     gameRound(playerMove, computerMove);
     }
 }
 
 scissors.onclick = () => {
     if (clickable){
-        clickable = false;
     playerMove = 'scissors';
-    computerPlay();
     gameRound(playerMove, computerMove); 
     }
 }
 
 reset.onclick = () => {
     message.innerHTML = '';
-    clickable = true;
     startOver();
 }
 
 const startOver = () =>{
-    clickable = true;
-    computerPlay();
+    reset.onclick = window.location.reload();
 }
 
 //Get computer move by random chance
@@ -70,11 +61,11 @@ function gameRound(playerMove, computerMove){
     message.style.fontSize = '25px';
     let playerPoint = 0;
     let computerPoint = 0;
-    let rounds = 0;
+    let rounds = 1;
 
     if (playerMove === computerMove){
         message.innerHTML = `Tie game. You both chose ${playerMove}`;
-
+        rounds++;
     } else if (playerMove === 'rock' && computerMove === 'scissors'){
         message.innerHTML = `Rock beats scissors - you win!`;
         playerPoint++;
@@ -103,3 +94,4 @@ function gameRound(playerMove, computerMove){
         message.innerHTML = 'take a break';
     }
 };
+
