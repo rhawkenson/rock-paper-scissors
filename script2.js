@@ -7,7 +7,7 @@ const computerScore = document.getElementById('computer-score');
 const playerScore = document.getElementById('player-score');
 const message = document.getElementById('message');
 const move = document.getElementById('move');
-//const recordRound = document.getElementById('round-number');
+const reset = getElementById('reset');
 
 //Get player move from button clicks
 rock.onclick = () => {
@@ -28,6 +28,13 @@ scissors.onclick = () => {
     gameRound(playerMove, computerMove);
 }
 
+reset.onclick = () => {
+    message.innerHTML = 'steven sucks';
+    message.style.color = '#C9F8F6';
+    message.style.fontSize = '25px';
+    
+}
+
 //Get computer move by random chance
 function computerPlay(){
     let choice = Math.floor(Math.random()*3)+1;
@@ -38,15 +45,15 @@ function computerPlay(){
     } else {
         return 'scissors';
     }
-}
+};
 
 
 //play the game 
 function gameRound(playerMove, computerMove){
-    message.style.color = 'yellow';
+    message.style.color = '#C9F8F6';
     message.style.fontSize = '25px';
     let playerPoint = 0;
-    let computerPoint =0;
+    let computerPoint = 0;
     let rounds = 0;
 
     if (playerMove === computerMove){
@@ -77,16 +84,6 @@ function gameRound(playerMove, computerMove){
         computerPoint++;
         rounds++;
     }else {
-        message.innerHTML = 'take a break'
-        computerPoint++;
-        rounds++;
+        message.innerHTML = 'take a break';
     }
-    
-    do {
-        //recordRound.innerHTML = `Round ${rounds}`;
-        computerScore.innerHTML = `Computer: ${computerPoint}`;
-        playerScore.innerHTML = `Player: ${playerPoint}`;
-        
-    } while (rounds < 5)
-}
-
+};
