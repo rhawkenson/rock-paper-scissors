@@ -30,8 +30,13 @@ button:hover{
     box-shadow: 0 0 1rem rgb(118, 168, 166);
 }
 
-.playRound {
-    transform: scale(1.1);
-    border-color: #ffc600;
-    box-shadow: 0 0 1rem #ffc600;
-  }
+button#reset {
+    background-color: rgb(21, 168, 161);
+    min-width: 100px;
+    height: 35px;
+    font-size: 20px;
+}
+
+button#reset:hover{
+    box-shadow: 0 0 1rem rgb(235, 84, 74);
+}

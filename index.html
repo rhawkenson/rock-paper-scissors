@@ -9,28 +9,33 @@
 <body>
     <h1>Rock, Paper, Scissors</h1>
     <div id="moves">
-        <div class="move">
+        <div>
             <h2>Make a move:</h2>
                 <button id='rock' class='move-button'>Rock</button>
                 <button id='paper' class='move-button'>Paper</button>
                 <button id='scissors' class='move-button'>Scissors</button>
         </div>
-        <div class="move">
-            <h2>Computer chose: </h2>
+        <div>
+            <h2 id="move"></h2>
+        </div>
+        </div>
+        <div id="message">
+            
         </div>
 
     </div>
     <div id="score-box">
         <h2 id=>Current Score:</h2>
         <div>
-            <p id='computer-score'>Computer</p>
-            <p id='player-score'>Player</p>
+            <p id='round-number'></p>
+            <p id='computer-score'></p>
+            <p id='player-score'></p>
         </div>
     </div>
-    <div id="reset" class="reset-row">
-        Reset
+    <div>
+        <button id='reset'>Reset</button>
       </div>
 
-    <script src='script.js'></script>
+    <script src='script2.js'></script>
 </body>
 </html>
