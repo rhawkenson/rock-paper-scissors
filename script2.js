@@ -4,40 +4,40 @@ const scissors = document.getElementById('scissors');
 let playerMove;
 const computerScore = document.getElementById('computer-score');
 const playerScore = document.getElementById('player-score');
+const tieScore = document.getElementById('tie-score');
 const message = document.getElementById('message');
 const move = document.getElementById('move');
 const reset = document.getElementById('reset');
-let clickable = true;
-let rounds = 0;
 let button = document.querySelectorAll('button');
 let roundCount = document.getElementById('round-number');
+let playerPoint = 0;
+let computerPoint = 0;
+let tiePoint = 0;
+let rounds = 0;
+let gameOver = document.getElementById('game-over');
+let clickable = true;
 
 //Get player move from button clicks
-button.forEach((btn)=>{
-    btn.addEventListener('click', fullGame)
-});
-
-
-/*rock.onclick = () => {
-    if (clickable){
+rock.onclick = () => {
+    if(clickable){
     playerMove = 'rock';
     fullGame();
     }
 }
 
 paper.onclick = () => {
-    if (clickable){
+    if(clickable){
     playerMove = 'paper';
     fullGame();
     }
 }
 
 scissors.onclick = () => {
-    if (clickable){
+    if(clickable){
     playerMove = 'scissors';
     fullGame(); 
     }
-}*/
+}
 
 reset.onclick = () => {
     message.innerHTML = '';
@@ -60,56 +60,68 @@ function computerPlay(){
     }
 };
 
-
-
 //play the game 
 function gameRound(playerMove, computerMove){
-    message.style.color = '#C9F8F6';
+    message.style.color = '#A5D332';
     message.style.fontSize = '25px';
-    let playerPoint = 0;
-    let computerPoint = 0;
-    let rounds = 1;
+    move.innerHTML = `Computer chose: ${computerMove}`;
 
     if (playerMove === computerMove){
         message.innerHTML = `Tie game. You both chose ${playerMove}`;
-        rounds++;
+        tiePoint++;
+        ++rounds;
     } else if (playerMove === 'rock' && computerMove === 'scissors'){
         message.innerHTML = `Rock beats scissors - you win!`;
         playerPoint++;
-        rounds++;
+        ++rounds;
     } else if (playerMove === 'rock' && computerMove === 'paper'){
         message.innerHTML = `Rock loses to paper - computer wins!`;
         computerPoint++;
-        rounds++;
+        ++rounds;
     } else if (playerMove === 'paper' && computerMove === 'scissors'){
         message.innerHTML = `Paper loses to scissors - computer wins!`;
         computerPoint++;
-        rounds++;
+        ++rounds;
     } else if (playerMove === 'paper' && computerMove === 'rock'){
         message.innerHTML = `Paper beats rock - you win!`;
         playerPoint++;
-        rounds++;
+        ++rounds;
     } else if (playerMove === 'scissors' && computerMove === 'paper'){
         message.innerHTML = `Scissors beats paper - you win!`;
         playerPoint++;
-        rounds++;
+        ++rounds;
     } else if (playerMove === 'scissors' && computerMove === 'rock'){
         message.innerHTML = `Scissors loses to rock - computer wins!`;
         computerPoint++;
-        rounds++;
+        ++rounds;
     } else {
         message.innerHTML = 'take a break';
-    }
+    } 
+    
+    playerScore.innerHTML = `Player: ${playerPoint}`;
+    computerScore.innerHTML = `Computer: ${computerPoint}`;
+    tieScore.innerHTML = `Ties: ${tiePoint}`;
+    roundCount.innerHTML = `Round ${rounds} of 5`;
 };
 
 
 
+
 function fullGame(){
-    do {
-        let computerMove = computerPlay();
-        gameRound(playerMove, computerMove);
-        playerScore.innerHTML = `Player: ${playerPoint}`;
-        computerScore.innerHMTL = `Computer: ${computerPoint}`;
-        
-    } while (rounds < 5)
-    };
+    let computerMove = computerPlay();
+    gameRound(playerMove, computerMove);
+    gameOver.style.color = '#A5D332';
+
+    if (rounds >= 5 && playerPoint > computerPoint){
+        gameOver.innerHTML = 'GAME OVER: YOU WIN!';
+        clickable = false;
+    } else if (rounds >= 5 && playerPoint < computerPoint){
+        gameOver.innerHTML = 'GAME OVER: COMPUTER WINS!';
+        clickable = false;
+    } else if (rounds >= 5 && playerPoint === computerPoint){
+        gameOver.innerHTML = 'GAME OVER: YOU TIED!';
+        clickable = false;
+    } else {
+        gameOver.innerHTML = '';
+    }
+};
