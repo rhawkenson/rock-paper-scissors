@@ -9,7 +9,7 @@ const move = document.getElementById('move');
 const reset = document.getElementById('reset');
 let clickable = true;
 let rounds = 0;
-let button = document.querySelectorAll('button')
+let button = document.querySelectorAll('button');
 let roundCount = document.getElementById('round-number');
 
 //Get player move from button clicks
@@ -18,7 +18,7 @@ button.forEach((btn)=>{
 });
 
 
-rock.onclick = () => {
+/*rock.onclick = () => {
     if (clickable){
     playerMove = 'rock';
     fullGame();
@@ -37,7 +37,7 @@ scissors.onclick = () => {
     playerMove = 'scissors';
     fullGame(); 
     }
-}
+}*/
 
 reset.onclick = () => {
     message.innerHTML = '';
@@ -108,11 +108,8 @@ function fullGame(){
     do {
         let computerMove = computerPlay();
         gameRound(playerMove, computerMove);
+        playerScore.innerHTML = `Player: ${playerPoint}`;
+        computerScore.innerHMTL = `Computer: ${computerPoint}`;
         
-        
-    } while (rounds < 5 )
+    } while (rounds < 5)
     };
-    
-        //playerScore.innerHTML = `Player: ${playerPoint}`;
-        //computerScore.innerHMTL = `Computer: ${computerPoint}`;
-        //roundCount.innerHTML = `Round ${rounds}`;
