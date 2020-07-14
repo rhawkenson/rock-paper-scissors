@@ -2,33 +2,40 @@ const rock = document.getElementById('rock');
 const paper = document.getElementById('paper');
 const scissors = document.getElementById('scissors');
 let playerMove;
-const computerMove = computerPlay();
 const computerScore = document.getElementById('computer-score');
 const playerScore = document.getElementById('player-score');
 const message = document.getElementById('message');
 const move = document.getElementById('move');
 const reset = document.getElementById('reset');
 let clickable = true;
+let rounds = 0;
+let button = document.querySelectorAll('button')
+let roundCount = document.getElementById('round-number');
 
 //Get player move from button clicks
+button.forEach((btn)=>{
+    btn.addEventListener('click', fullGame)
+});
+
+
 rock.onclick = () => {
     if (clickable){
     playerMove = 'rock';
-    gameRound(playerMove, computerMove);
+    fullGame();
     }
 }
 
 paper.onclick = () => {
     if (clickable){
     playerMove = 'paper';
-    gameRound(playerMove, computerMove);
+    fullGame();
     }
 }
 
 scissors.onclick = () => {
     if (clickable){
     playerMove = 'scissors';
-    gameRound(playerMove, computerMove); 
+    fullGame(); 
     }
 }
 
@@ -95,3 +102,17 @@ function gameRound(playerMove, computerMove){
     }
 };
 
+
+
+function fullGame(){
+    do {
+        let computerMove = computerPlay();
+        gameRound(playerMove, computerMove);
+        
+        
+    } while (rounds < 5 )
+    };
+    
+        //playerScore.innerHTML = `Player: ${playerPoint}`;
+        //computerScore.innerHMTL = `Computer: ${computerPoint}`;
+        //roundCount.innerHTML = `Round ${rounds}`;
